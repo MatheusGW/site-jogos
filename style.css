@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 48px;
+    color: #FFD700; /* Cor amarela */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte mais cartoon */
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.title:hover {
+    transform: scale(1.1);
+}
+
+#starfield {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkling 3s infinite;
+}
+
+@keyframes twinkling {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.planet {
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+#planet1 {
+    width: 200px;
+    height: 200px;
+    background-image: url('https://s2.glbimg.com/eO_bdJMQEjg3OKrnXVTIkLen7Lc=/e.glbimg.com/og/ed/f/original/2017/09/18/content-1505401935-wallpaper-4k-pj08-118-detail001-v2.jpg');
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+#planet2 {
+    width: 300px;
+    height: 300px;
+    background-image: url('https://maestrovirtuale.com/wp-content/uploads/2019/10/gran-mancha-roja-de-jupiter.jpg');
+    top: 30%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.shop {
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, top 1s ease;
+    color: #FFD700; /* Cor amarela */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte mais cartoon */
+}
+
+.shop.show {
+    opacity: 1;
+    top: 50%;
+}
+
+.shop-btn {
+    font-size: 24px;
+    color: #FFD700;
+    background-color: transparent;
+    border: 2px solid #FFD700;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.shop-btn:hover {
+    background-color: #FFD700;
+    color: black;
+}
+jss
+document.addEventListener("DOMContentLoaded", function() {
+    const shopBtn = document.querySelector('.shop-btn');
+    const shopSection = document.querySelector('.shop');
+
+    // Exibir a loja de naves espaciais com uma transição suave
+    setTimeout(() => {
+        shopSection.classList.add('show');
+    }, 1000); // Adicionar um atraso para a transição começar após 1 segundo
+
+    // Adicionar interação de clique ao botão da loja
+    shopBtn.addEventListener('click', function() {
+        // Simular o redirecionamento para a página da loja
+        window.location.href = 'pagina-da-loja.html'; // Substitua 'pagina-da-loja.html' pelo URL real da página da loja
+    });
+
+    const starfield = document.getElementById('starfield');
+
+    for (let i = 0; i < 100; i++) {
+        createStar();
+    }
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        starfield.appendChild(star);
+    }
+});
